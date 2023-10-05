@@ -359,8 +359,7 @@ def climbing_image(X,Y,Z,tspan,dt,mass,nreplica,k_el, indice_1, indice_2,spacing
         
         k = k + 1
 
-    fig,ax = plt.subplots(1,2)
-
+    fig,ax = plt.subplots(1,2, figsize=(6, 3))   
 
     ax[0].cla()
     ax[1].cla()            
@@ -368,7 +367,7 @@ def climbing_image(X,Y,Z,tspan,dt,mass,nreplica,k_el, indice_1, indice_2,spacing
     x2 = np.linspace(start=pos_store[0,0,k], stop=pos_store[0,-1,k], num=1000)
     y2 = line(x2)        
     ax[0].plot(pos_store[0,:,k],pos_store[1,:,k], color='black', marker='o', label='line with marker')
-    cp=ax[0].contourf(x,y,Z,levels=range(0,50,1),cmap='RdBu_r',antialiased=False,alpha=0.8)    
+    cp=ax[0].contourf(x,y,Z,levels=range(0,50,1),cmap='coolwarm',antialiased=False,alpha=0.8)    
     ax[0].set_ylim([-np.pi,np.pi])
     ax[0].set_xlim([0,12])
     ax[0].set_ylabel('CV2',fontsize=11)
@@ -377,10 +376,10 @@ def climbing_image(X,Y,Z,tspan,dt,mass,nreplica,k_el, indice_1, indice_2,spacing
     ax[1].scatter(pos_store[0,:,k],z_star_hist[:,k], marker='o', color='red')
     ax[1].plot(x2,y2,color='b')
     ax[1].set_ylim([0,35])
-    ax[1].set_xlim([0,12])
-    ax[1].set_xlabel('d(C-C) [Bohr]')
+    ax[1].set_xlim([0,nreplica+1])
+    ax[1].set_xlabel('Reaction Coodinate', fontsize=11)
     ax[1].set_title('Minimum Free Energy Path [kJ/mol]')
  
-    plt.show()
-
+    #plt.show()
+   
     return  pos_store, z_star_hist, k
