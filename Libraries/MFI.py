@@ -753,8 +753,9 @@ def intgrad2(fx, fy, nx=0, ny=0, intconst=0, per1 = False, per2 = False, min_gri
 	#plt.title('Sparsity Pattern of Matrix A')
 	#plt.show()
 	np.set_printoptions(threshold=np.inf)
-	#print(A)
+
 	fhat=spsl.lsmr(A,rhs)
+	print(rhs.shape, fhat.shape)
 	fhat=fhat[0]
 	fhat = np.reshape(fhat,nbins) 
 	 
